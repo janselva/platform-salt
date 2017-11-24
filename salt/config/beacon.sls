@@ -8,7 +8,7 @@ config-beacon_create_conf_file:
       - "    interval: 30"
       - "    disable_during_state_run: True"
 {% if 'hadoop_manager' in roles %}
-      - "  service_restart:"
+      - "  hadoop_service:"
       - "    interval: 30"
       - "    disable_during_state_run: True"
 {% endif %}

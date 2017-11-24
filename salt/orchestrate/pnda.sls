@@ -238,7 +238,15 @@ orchestrate-pnda-install_remove_new_node_markers:
     - timeout: 120
     - queue: True
 
-orchestrate-pnda_kernel_reboot:
+orchestrate-saltstack_minion_config:
+  salt.state:
+    - tgt: '*'
+    - tgt_type: compound
+    - sls: config
+    - timeout: 120
+    - queue: True
+
+orchestrate-pnda_vm_reboot:
   salt.state:
     - tgt: '*'
     - tgt_type: compound

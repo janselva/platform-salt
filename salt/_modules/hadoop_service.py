@@ -12,9 +12,9 @@ logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger(__name__)
 
 # retry the start service only for every DOWN_COUNT_MAX
-DOWN_COUNT_MAX = 10
+DOWN_COUNT_MAX = 3
 # maximum retry count is RETRY_COUNT_MAX
-RETRY_COUNT_MAX = 3
+RETRY_COUNT_MAX = 15
 # retry_count will reset after RETRY_COUNT_MAX
 RETRY_COUNT_RESET = 10
 

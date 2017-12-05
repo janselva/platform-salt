@@ -5,9 +5,9 @@ from __future__ import absolute_import
 
 import logging
 # retry the start service only for every DOWN_COUNT_MAX
-DOWN_COUNT_MAX = 5
+DOWN_COUNT_MAX = 2
 # maximum retry count is RETRY_COUNT_MAX
-RETRY_COUNT_MAX = 10
+RETRY_COUNT_MAX = 15
 # retry_count will reset after RETRY_COUNT_MAX
 RETRY_COUNT_RESET = 10
 

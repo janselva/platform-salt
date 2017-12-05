@@ -13,8 +13,9 @@ config-beacon_create_conf_file:
       - "    disable_during_state_run: True"
 {% endif %}
 {% if 'opentsdb' in roles %}
-      - "  service_opentsdb:"
+      - "  service:"
       - "    interval: 30"
       - "    disable_during_state_run: True"
+      - "    opentsdb:"
 {% endif %}
 © 2017 GitHub, Inc.

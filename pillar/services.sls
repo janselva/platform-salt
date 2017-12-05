@@ -29,7 +29,7 @@ logstash-cluster:
   inputdir: /tmp/logstash
 
 zookeeper:
-  version: 3.4.6
+  version: 3.4.11
 
 kafka:
   version: 0.11.0.0
@@ -73,6 +73,7 @@ console_backend_utils:
 
 deployment_manager:
   release_version: develop
+  keys_directory: /opt/pnda/dm_keys
 
 package_repository:
   release_version: develop

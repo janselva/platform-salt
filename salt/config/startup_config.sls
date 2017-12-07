@@ -1,7 +1,7 @@
 {% set roles = salt['grains.get']('roles', '') %}
 
 {% if 'hadoop_manager' in roles %}
-config-startup_config
+config-startup_config:
   file.managed:
     - name: /etc/salt/minion.d/startup-config.conf
     - contents: 

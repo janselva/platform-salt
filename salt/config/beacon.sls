@@ -4,13 +4,13 @@ config-beacon_create_conf_file:
     - name: /etc/salt/minion.d/beacons.conf
     - contents: 
       - "beacons:"
-      - "  kernel_reboot_required:"
+      - "  kernel_reboot:"
       - "    interval: 30"
       - "    disable_during_state_run: True"
 {% if 'hadoop_manager' in roles %}
-      - "  service_restart:"
-      - "    interval: 30"
-      - "    disable_during_state_run: True"
+      - '  hadoop_service:'
+      - '    interval: 30'
+      - '    disable_during_state_run: True'
 {% endif %}
 {% if 'opentsdb' in roles %}
       - "  service:"
@@ -18,4 +18,3 @@ config-beacon_create_conf_file:
       - "    disable_during_state_run: True"
       - "    opentsdb:"
 {% endif %}
-© 2017 GitHub, Inc.

@@ -1,3 +1,3 @@
 include:
-  - config.beacon
+  - config.beacons
   - config.startup_config

@@ -11,6 +11,7 @@ def beacon(config):
     ret_dict = dict()
     ret = list()
     result =  __salt__['kernel_reboot.entry'] ()
+    result =  __salt__['kernel_reboot.required'] ()
     log.debug("System reboot status from beacon : {0}".format(result))
 
     if result:

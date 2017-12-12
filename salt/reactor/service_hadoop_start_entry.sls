@@ -1,8 +1,7 @@
 reactor-hadoop_service_start:
-  local.state.single:
+  local.state.sls:
     - arg:
-      - hadoop_service.start
-      - "hadoop service start"
+      - reactor.service_hadoop_start
     - tgt: {{ data['data']['id'] }}
     - timeout: 120
     - queue: True

@@ -38,6 +38,7 @@ def beacon(config):# pylint: disable=W0612,W0613
     health_report =__salt__['pnda.ambari_get_cluster_health_report']()# pylint: disable=E0602,E0603
     if (health_report['Host/host_status/HEALTHY']  !=
         health_report['Host/host_state/HEALTHY']):
+        servicelist['up_count'] = 0
         servicelist['down_count'] += 1
         if servicelist['retry_count'] > RETRY_COUNT_MAX:
             ret_dict['tag'] = 'service/hadoop/status/maxRetryreached'
@@ -58,21 +59,4 @@ def beacon(config):# pylint: disable=W0612,W0613
     __salt__['grains.set']("serviceList", {}, True)  # pylint: disable=E0602,E0603
     __salt__['grains.set'](  # pylint: disable=E0602,E0603
         "serviceList", servicelist, True)
-    ##Ambari Addon service Check
-    #get hostname
-    for host in __salt__['pnda.get_hosts_by_role']('HBASE','HBASE_MASTER'):
-        ret_dict = dict()
-        res = __salt__['network.connect'](host,'20550')['result']
-        if not res:
-           ret_dict['tag'] = 'service/hadoop/addon/status/stopped'
-           ret_dict['target'] = host
-           ret_dict['service'] = 'hbase_rest'
-           ret.append(ret_dict)
-        ret_dict = dict()
-        res = __salt__['network.connect'](host,'9090')['result']
-        if not res:
-           ret_dict['tag'] = 'service/hadoop/addon/status/stopped'
-           ret_dict['target'] = host
-           ret_dict['service'] = 'hbase_thrift'
-           ret.append(ret_dict)
     return ret

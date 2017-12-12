@@ -4,7 +4,6 @@ Module for to check system reboot
 
 # Import python libs
 from __future__ import absolute_import
-from subprocess import Popen
 import requests
 import time
 import logging
@@ -45,6 +44,7 @@ def start(name):
 
     ret['result'] = result
     return ret
+
 def cloudera_stop_all_services():
     cm_host = __salt__['pnda.hadoop_manager_ip']()  # pylint: disable=E0602,E0603
     cm_user = __salt__['pnda.hadoop_manager_username']()  # pylint: disable=E0602,E0603

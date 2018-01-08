@@ -197,6 +197,7 @@ MAPRED_CFG = {
                         '<property> \r\n<name>yarn.resourcemanager.proxy-user-privileges.enabled</name>\r\n<value>true</value>\r\n</property>',
                     'resource_manager_java_heapsize': '1073741824',
                     'resource_manager_log_dir': '/var/log/pnda/hadoop-yarn',
+                    'resourcemanager_fair_scheduler_configuration': '<?xml version="1.0" encoding="UTF-8" standalone="yes"?> <allocations> <queue name="root"> <weight>1.0</weight> <schedulingPolicy>fair</schedulingPolicy> <aclSubmitApps> </aclSubmitApps> <aclAdministerApps>pnda </aclAdministerApps><queue name="default"> <weight>1.0</weight> <schedulingPolicy>fair</schedulingPolicy> <aclSubmitApps>pnda </aclSubmitApps> </queue> <queue name="applications" type="parent"> <weight>0.0</weight> <schedulingPolicy>fair</schedulingPolicy> <queue name="dev"> <weight>0.0</weight> <schedulingPolicy>fair</schedulingPolicy> <aclSubmitApps> dev,prod</aclSubmitApps> </queue> <queue name="prod"> <weight>1.0</weight> <schedulingPolicy>fair</schedulingPolicy> <aclSubmitApps> prod</aclSubmitApps> </queue> </queue> </queue> <defaultQueueSchedulingPolicy>fair</defaultQueueSchedulingPolicy> <queuePlacementPolicy> <rule name="specified" create="false"/> <rule name="default"/> </queuePlacementPolicy> </allocations>',
                     'log_directory_free_space_absolute_thresholds': '{"warning":1073741824,"critical":1073741824}',
                     'heap_dump_directory_free_space_absolute_thresholds': '{"warning":"never","critical":5368709120}',
                     'max_log_backup_index': '2',
@@ -547,7 +548,7 @@ SPARK_CFG = {
         {'type': 'SPARK_YARN_HISTORY_SERVER', 'config': {}},
         {'type': 'GATEWAY', 'config': {
             'spark_history_enabled': 'false',
-            'spark-conf/spark-defaults.conf_client_config_safety_valve': 'spark.yarn.executor.memoryOverhead=256\nspark.driver.memory=384m\nspark.executor.memory=384m\nspark.yarn.am.memory=384m\nspark.executor.cores=1',
+            'spark-conf/spark-defaults.conf_client_config_safety_valve': 'spark.yarn.executor.memoryOverhead=256\nspark.driver.memory=384m\nspark.executor.memory=384m\nspark.yarn.am.memory=384m\nspark.executor.cores=1\nspark.metrics.conf.*.sink.graphite.class=org.apache.spark.metrics.sink.GraphiteSink\nspark.metrics.conf.*.sink.graphite.host={{ pnda_graphite_host }}\nspark.metrics.conf.*.sink.graphite.port=2003\nspark.metrics.conf.*.sink.graphite.period=60\nspark.metrics.conf.*.sink.graphite.prefix=spark\nspark.metrics.conf.*.sink.graphite.unit=seconds\nspark.metrics.conf.master.source.jvm.class=org.apache.spark.metrics.source.JvmSource\nspark.metrics.conf.worker.source.jvm.class=org.apache.spark.metrics.source.JvmSource\nspark.metrics.conf.driver.source.jvm.class=org.apache.spark.metrics.source.JvmSource\nspark.metrics.conf.executor.source.jvm.class=org.apache.spark.metrics.source.JvmSource',
             'spark_dynamic_allocation_max_executors': '4'}}
     ]
 }

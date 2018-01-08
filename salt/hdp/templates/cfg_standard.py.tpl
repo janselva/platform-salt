@@ -128,6 +128,13 @@ BLUEPRINT = r'''{
             }
         },
         {
+            "spark-metrics-properties" : {
+                "properties" : {
+                    "content" : "*.sink.graphite.class=org.apache.spark.metrics.sink.GraphiteSink\n*.sink.graphite.host={{ pnda_graphite_host }}\n*.sink.graphite.port=2003\n*.sink.graphite.period=60\n*.sink.graphite.prefix=spark\n*.sink.graphite.unit=seconds\n# Enable jvm source for instance master, worker, driver and executor\nmaster.source.jvm.class=org.apache.spark.metrics.source.JvmSource\nworker.source.jvm.class=org.apache.spark.metrics.source.JvmSource\ndriver.source.jvm.class=org.apache.spark.metrics.source.JvmSource\nexecutor.source.jvm.class=org.apache.spark.metrics.source.JvmSource"
+                }
+            }
+        },
+        {
             "spark2-env" : {
                 "properties_attributes" : { },
                 "properties" : {
@@ -178,7 +185,11 @@ BLUEPRINT = r'''{
                     "yarn.resourcemanager.scheduler.address" : "%(cluster_name)s-hadoop-mgr-1:8030",
                     "yarn.resourcemanager.store.class" : "org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore",
                     "yarn.resourcemanager.webapp.address" : "%(cluster_name)s-hadoop-mgr-1:8088",
+                    "yarn.resourcemanager.webapp.address.rm1" : "%(cluster_name)s-hadoop-mgr-1:8088",
+                    "yarn.resourcemanager.webapp.address.rm2" : "%(cluster_name)s-hadoop-mgr-2:8088",
                     "yarn.resourcemanager.webapp.https.address" : "%(cluster_name)s-hadoop-mgr-1:8090",
+                    "yarn.resourcemanager.webapp.https.address.rm1" : "%(cluster_name)s-hadoop-mgr-1:8090",
+                    "yarn.resourcemanager.webapp.https.address.rm2" : "%(cluster_name)s-hadoop-mgr-2:8090",
                     "yarn.timeline-service.address" : "%(cluster_name)s-hadoop-mgr-3:10200",
                     "yarn.timeline-service.webapp.address" : "%(cluster_name)s-hadoop-mgr-3:8188",
                     "yarn.timeline-service.webapp.https.address" : "%(cluster_name)s-hadoop-mgr-3:8190"

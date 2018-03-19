@@ -1,3 +1,31 @@
+influxdb:
+  version: 1.4.2-1
+  port: 8086
+  retention_policy_name: pnda_two_weeks
+  retention_policy_value: 2w
+  meta_dir: /mnt/influxdb/meta
+  data_dir: /mnt/influxdb/data
+  wal_dir: /mnt/influxdb/wal
+  database: telegraf
+  host: localhost
+  user: ''
+  password: ''
+
+jetty:
+  version: 9.4.7.v20170914
+  port: 8200
+  directory: /opt/pnda
+  jetty_logs: /var/log/jetty/
+
+jolokia:
+  version: 1.3.7
+  directory: /opt/pnda
+
+telegraf:
+  version: 1.5.1-1
+  socket_listner_port: 2003
+  interval: 30s
+
 logstash:
   version: 6.2.1
 
@@ -20,6 +48,7 @@ kafka:
   internal_port: 9092
   replication_port: 9093
   ingest_port: 9094
+  jmx_port: 9050
 
 consul:
   service: True

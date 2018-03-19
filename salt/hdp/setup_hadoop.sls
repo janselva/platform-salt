@@ -16,7 +16,13 @@
 {% set mysql_host = salt['pnda.get_hosts_for_role']('oozie_database')[0] %}
 {% set aws_key = salt['pillar.get']('aws.archive_key', '') %}
 {% set aws_secret_key = salt['pillar.get']('aws.archive_secret', '') %}
-{% set pnda_graphite_host = salt['pnda.get_hosts_for_role']('graphite')[0] %}
+
+{%- if salt['pillar.get']('pnda_metrics:SPARK_ENABLED') and salt['pillar.get']('pnda_metrics:PNDA_METRICS') and  salt['pillar.get']('pnda_flavor:name') != 'pico' -%}
+ {%- set pnda_spark_host = salt['pnda.get_hosts_for_role']('telegraf')[0] -%}
+{%- else -%}
+ {%- set pnda_spark_host = salt['pnda.get_hosts_for_role']('graphite')[0] -%}
+{%- endif -%}
+
 {% set pnda_user = pillar['pnda']['user'] %}
 
 {% set pip_index_url = pillar['pip']['index_url'] %}
@@ -79,7 +85,7 @@ hdp-copy_flavor_config:
       aws_secret_key: {{ aws_secret_key }}
       data_volumes: {{ data_volumes }}
       pnda_user: {{ pnda_user }}
-      pnda_graphite_host: {{ pnda_graphite_host }}
+      pnda_graphite_host: {{ pnda_spark_host }}
       app_packages_dir: {{ app_packages_dir }}
 
 hdp-execute_hdp_installation_script:

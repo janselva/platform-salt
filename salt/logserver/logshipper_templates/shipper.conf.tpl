@@ -156,6 +156,12 @@ filter {
              ]
            }
        }
+       else if [_systemd_unit] == "influxdb.service" {
+           mutate {add_field => {"source" => "influxdb"}}
+       }
+       else if [_systemd_unit] == "telegraf.service" {
+           mutate {add_field => {"source" => "telegraf"}}
+       }
        else {
            drop { }
        }

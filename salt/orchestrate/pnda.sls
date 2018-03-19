@@ -246,6 +246,31 @@ orchestrate-pnda-install_hdp_hadoop_oozie_libs:
     - queue: True
 {% endif %}
 
+orchestrate-pnda-install_influxdb:
+  salt.state:
+    - tgt: 'G@pnda_cluster:{{pnda_cluster}} and G@roles:influxdb'
+    - tgt_type: compound
+    - sls: influxdb
+    - timeout: 120
+    - queue: True
+
+orchestrate-pnda-install_jetty:
+  salt.state:
+    - tgt: 'G@pnda_cluster:{{pnda_cluster}} and G@roles:jetty'
+    - tgt_type: compound
+    - sls: jetty
+    - timeout: 120
+    - queue: True
+
+
+orchestrate-pnda-install_telegraf:
+  salt.state:
+    - tgt: 'G@pnda_cluster:{{pnda_cluster}} and G@roles:telegraf'
+    - tgt_type: compound
+    - sls: telegraf
+    - timeout: 120
+    - queue: True
+
 orchestrate-pnda-app-packages:
   salt.state:
     - tgt: 'G@pnda_cluster:{{pnda_cluster}} and ( G@hadoop:role:EDGE or G@roles:jupyter or G@hadoop:role:DATANODE )'

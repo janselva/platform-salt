@@ -1,0 +1,5 @@
+JETTY_HOME={{ salt['pillar.get']('jetty:directory') }}/jetty
+JETTY_USER=jetty
+JETTY_PORT={{ salt['pillar.get']('jetty:port') }}
+JETTY_HOST=localhost
+JETTY_LOGS={{ salt['pillar.get']('jetty:jetty_logs') }}

@@ -66,7 +66,7 @@ ambari-server-properties:
     - template: jinja
     - mode: 0644
     - defaults:
-      java_version_name: {{ pillar['java']['version_name'] }}
+      java_home: {{ pillar['java']['java_home'] }}
 
 ambari-server-log4j:
   file.managed:

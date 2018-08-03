@@ -48,6 +48,8 @@
 
 {% set features = salt['pillar.get']('features', []) %}
 
+{% set java_home = salt['pillar.get']('java:java_home', '') %}
+
 gobblin-create_gobblin_version_directory:
   file.directory:
     - name: {{ gobblin_real_dir }}
@@ -157,6 +159,7 @@ gobblin-install_gobblin_service_script:
       gobblin_work_dir: {{ gobblin_hdfs_work_dir }}
       gobblin_job_file: {{ gobblin_link_dir }}/configs/mr.pull
       hadoop_home_bin: {{ hadoop_home_bin }}
+      java_home: {{ java_home }}
 
 {% if perform_compaction %}
 gobblin-install_gobblin_compact_service_script:
@@ -170,6 +173,7 @@ gobblin-install_gobblin_compact_service_script:
       gobblin_work_dir: {{ gobblin_hdfs_work_dir }}
       gobblin_job_file: {{ gobblin_link_dir }}/configs/mr.compact
       hadoop_home_bin: {{ hadoop_home_bin }}
+      java_home: {{ java_home }}
 {%- endif %}
 
 gobblin-systemctl_reload:

@@ -9,7 +9,7 @@
 {% set jmxproxy_url = mirror_location + jmxproxy_jar %}
 
 {% set install_dir = pillar['pnda']['homedir'] + '/jmxproxy' %}
-
+{% set java_home = salt['pillar.get']('java:java_home', '') %}
 
 jmxproxy-create_release_dir:
   file.directory:
@@ -51,6 +51,7 @@ jmxproxy-service_script:
     - template: jinja
     - defaults:
         install_dir: {{ install_dir }}
+        java_home: {{ java_home }}
 
 jmxproxy-systemctl_reload:
   cmd.run:

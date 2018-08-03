@@ -5,6 +5,7 @@
 {% set mirror_location = pnda_mirror + misc_packages_path %}
 {% set opentsdb_home = pnda_home + '/opentsdb' %}
 {% set opentsdb_port = pillar['opentsdb']['bind_port'] %}
+{% set java_home = salt['pillar.get']('java:java_home', '') %}
 
 include:
   - gnuplot
@@ -58,6 +59,7 @@ opentsdb-copy_service:
     - context:
       home: {{ opentsdb_home }}
       opentsdb_port: {{ opentsdb_port }}
+      java_home: {{ java_home }}
 
 opentsdb-systemctl_reload:
   cmd.run:

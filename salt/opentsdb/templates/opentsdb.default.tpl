@@ -1,2 +1,2 @@
-JAVA_HOME=/usr/lib/jvm/java-8-oracle
+JAVA_HOME={{ java_home }}
 export JVMARGS="-Xms{{ heap_size }} -Xmx{{ heap_size }} -enableassertions -enablesystemassertions"

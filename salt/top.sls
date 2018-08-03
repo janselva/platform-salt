@@ -10,7 +10,6 @@
     - self-registration.node
     - self-registration.service
     - java
-    - java.env
     - ntp
     - logserver.logshipper
 

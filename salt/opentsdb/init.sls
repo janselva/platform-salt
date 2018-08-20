@@ -40,6 +40,7 @@ opentsdb-copy_defaults:
     - source: salt://opentsdb/templates/opentsdb.default.tpl
     - context:
       heap_size: {{ flavor_cfg.opentsdb_heapsize }}
+      java_home: {{ java_home }}
     - template: jinja
 
 opentsdb-create_start_script:

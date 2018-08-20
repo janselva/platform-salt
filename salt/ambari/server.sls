@@ -97,7 +97,7 @@ ambari-server-systemctl_reload:
 
 ambari-server-setup_init:
   cmd.run:
-    - name: 'ambari-server setup -s -j /usr/share/java/{{ pillar['java']['version_name'] }}/ && echo done > /opt/pnda/.ambari-setup-progress'
+    - name: 'ambari-server setup -s -j {{ pillar['java']['java_home'] }}/ && echo done > /opt/pnda/.ambari-setup-progress'
     - unless: ls /opt/pnda/.ambari-setup-progress
 
 ambari-server-properties_delete_pool:

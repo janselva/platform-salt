@@ -104,8 +104,8 @@ anaconda:
 java:
   version: "1.8.0.181-3.b13.el7_5"
   version_name: "jdk1.8.0_181"
-  package-name: 'java-1.8.0-openjdk-devel'
-  java_home: '/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64'
+  package-name: 'java-1.8.0-openjdk'
+  java_home: '/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre'
 
 cloudera:
   hadoop_version: "2.6.0-cdh5.12.1"
